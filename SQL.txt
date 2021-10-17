@@ -1,0 +1,20 @@
+﻿create table if not exists  Исполнители (
+	id_Исполнителя serial primary key,
+	Имя  varchar(50),
+	Псевдоним text,
+	список_альбомов varchar(40) not null
+)
+
+create table if not exists Альбомы (
+	id_Исполнителя integer references Исполнители(id_Исполнителя),
+	id_Альбома serial primary key,
+	Название_альбома varchar(100) not null,
+	Список_треков text,
+	Год_выпуска_альбома date
+)
+
+create table if not exists Треки(
+	id_Альбома  integer references Альбомы(id_Альбома),
+	Название_песни varchar(100) not null,
+	Продолжительность_трека integer
+)
